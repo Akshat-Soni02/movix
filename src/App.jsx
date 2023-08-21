@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react';
+import { useEffect} from 'react';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import {fetchDataFromApi} from "./utils/api";
 import { getApiConfiguration, getGenres } from './store/homeSlice';
@@ -22,7 +22,6 @@ function App() {
 
   const fetchApiConfig = () => {
     fetchDataFromApi('/configuration').then((res) => {
-      console.log(res);
 
       const url = {
         backdrop: res.images.secure_base_url + "original",
@@ -44,7 +43,6 @@ function App() {
     });
 
     const data = await Promise.all(promises);
-    console.log(data);
     data.map(({genres}) => {
       return genres.map((item) => (allGenres[item.id] = item))
     });
